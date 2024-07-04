@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoCon</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/cocon.css' %}">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');</style>
+    <script src="https://kit.fontawesome.com/3f1a067f73.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/3f1a067f73.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% block body %}
+    {% endblock%}
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

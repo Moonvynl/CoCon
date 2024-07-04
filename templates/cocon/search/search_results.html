@@ -1,0 +1,11 @@
+{% for user in users %}
+<a href="{% url 'user:profile' user.id %}" style="color: inherit;">
+    <div class="user-card">
+        <img class="user-card-avatar" src="{{user.avatar.url}}" alt="User Avatar">
+        <div class="user-card-info">
+            <h3>{{user.username}}</h3>
+            <p>{{user.bio|truncatechars:70}}</p>
+        </div>
+    </div>
+</a>
+{% endfor %}

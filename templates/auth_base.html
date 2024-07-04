@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>Document</title>{% endblock %}
+    {% load static %}
+    {% load socialaccount %}
+    <style>@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');</style>
+    <script src="https://kit.fontawesome.com/3f1a067f73.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static '/css/auth.css' %}">
+</head>
+<body>
+    {% block content %}
+    {% endblock%}
+</body>
+</html>

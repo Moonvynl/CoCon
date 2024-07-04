@@ -1,0 +1,46 @@
+{% extends 'auth_base.html' %}
+
+{% block content %}
+{% load socialaccount %}
+{% block title %}<title>Login</title>{% endblock %}
+
+<h1 style="font-size: 32px;">Cogito Connect</h1>
+<div class="login-container">
+    <h2>Login</h2>
+    <form action="{% url 'user:login' %}" method="post" class="form">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            {% for error in form.username.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            {% for error in form.password.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <button type="submit" class="login-button">Login</button>
+    </form>
+    <div class="separator">
+        <span>or</span>
+    </div>
+    <a href="{% provider_login_url 'google' %}" class="google-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px">
+            <path fill="#4285F4" d="M24 9.5c3.1 0 5.2 1.3 6.4 2.4L34 9c-2.6-2.5-6.1-4-10-4C16.1 5 10.1 9 8.1 14.4l5.9 4.6c1.4-4.2 5.2-7.5 10-7.5z"/>
+            <path fill="#34A853" d="M13.3 22.3c-.3-1-.5-2-.5-3s.2-2 .5-3L7.4 12c-1.1 2.2-1.7 4.6-1.7 7 0 2.5.6 4.8 1.7 7l5.9-4.7z"/>
+            <path fill="#FBBC05" d="M24 37c-3.9 0-7.4-1.5-10-4l-5.9 4.7C10.1 39 16.1 43 24 43c3.9 0 7.4-1.3 10-3.6l-5.9-4.7c-1.2 1.1-3.3 2.3-6.4 2.3z"/>
+            <path fill="#EA4335" d="M34 24c0-.8-.1-1.5-.2-2.2H24v4.5h5.9c-.3 1.4-1.1 2.5-2.1 3.3l5.9 4.7c2.5-2.2 4-5.4 4-9.3z"/>
+            <path fill="none" d="M0 0h48v48H0z"/>
+        </svg>
+        Sign in with Google
+    </a>
+    <div class="signup-container">
+        <span>Don't have an account?</span>
+        <a href="{% url 'user:register' %}" class="signup-button">Sign Up</a>
+    </div>
+</div>
+{% endblock %}

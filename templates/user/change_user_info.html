@@ -1,0 +1,39 @@
+{% extends 'cocon/home.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/change_user_info.css' %}">
+
+<a href="{% url 'user:profile' user.id %}"><i class="fa-solid fa-arrow-left fa-xl back-btn" style="color: #ffffff;"></i></a>
+<div class="change-container">
+    <div class="profile-section">
+        <img src="{{user.avatar.url}}" alt="Profile Picture" class="profile-pic" id="pic">
+        <h2 class="username">{{user.username}}</h2>
+    </div>
+    <form class="update-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="avatar">Аватар</label>
+            <input type="file" id="avatar" name="avatar" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label for="username">Ім'я</label>
+            <input type="text" id="username" name="username" value="{{ form.username.value|default:'' }}">
+            {% if form.username.errors %}
+            <div class="error">
+                {% for error in form.username.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="bio">Біо</label>
+            <textarea id="bio" name="bio">{{ form.bio.value|default:'' }}</textarea>
+        </div>
+        <button type="submit" class="btn-update">Update Profile</button>
+    </form>
+</div>
+
+<script src="{% static 'js/imgEvent.js' %}"></script>
+{% endblock %}

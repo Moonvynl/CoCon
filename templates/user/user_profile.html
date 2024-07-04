@@ -1,0 +1,42 @@
+{% extends 'cocon/home.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/profile.css' %}">
+
+<div class="profile-container">
+    <header class="profile-header">
+        <div class="profile-image">
+            <img src="{{user.avatar.url}}" alt="Profile Picture">
+        </div>
+        <div class="profile-details">
+            <div class="profile-username">
+                <h1>{{user.username}}</h1>
+                {% if user == request.user %}
+                <a href="{% url 'user:update-user-info' request.user.id %}" class="edit-profile-button">Редагувати профіль</a>
+                {% else %}
+                <div class="profile-actions">
+                    <a class="follow-button">Підписатись</a>
+                    <a class="message-button" href="{% url 'chat_system:chat' user.id %}">Повідомлення</a>
+                </div>
+                {% endif %}
+            </div>
+            <ul class="profile-stats">
+                <li><span class="stat-number">{{user_posts_count}}</span> публікацій</li>
+                <li><span class="stat-number">{{followers}}</span> підписників</li>
+                <li><span class="stat-number">{{following}}</span> підписок</li>
+            </ul>
+            <div class="profile-bio">
+                <p>{{user.bio}}</p>
+            </div>
+        </div>
+    </header>
+    <section class="profile-gallery">
+        {% if user_posts %}
+            {% for post in user_posts %}
+            <div class="gallery-item"><img src="{{post.content.url}}" alt="Gallery Image 1"></div>
+            {% endfor %}
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

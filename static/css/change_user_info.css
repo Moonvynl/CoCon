@@ -1,0 +1,95 @@
+.change-container {
+    font-family: "Space Mono", monospace;
+    background-color: inherit;
+    border: 1px solid #dbdbdb;
+    padding: 20px;
+    width: 900px;
+    color: white;
+    margin-left: 350px;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.username {
+    font-size: 18px;
+}
+
+.update-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    background-color: inherit;
+}
+
+.form-group input, .form-group textarea, .form-group select:focus {
+    color: white;
+    ::placeholder{
+        color: white;
+    }
+}
+
+input::file-selector-button {
+    border-radius: 0px;
+    border: 1px white solid;
+    background-color: black;
+    color: white;
+    font-family: "Space Mono", monospace;
+    transition: 1s, width 1s;
+
+}
+
+input::file-selector-button:hover {
+    background-color: rgb(36, 36, 36);
+    width: 170px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 60px;
+}
+
+.btn-update {
+    background-color: rgb(19, 72, 151);
+    color: #fff;
+    border: 1px white solid;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-update:hover {
+    background-color: rgb(17, 61, 128);
+}
+
+.back-btn {
+    transform: translateY(-40px) translateX(30px);
+    
+}
+

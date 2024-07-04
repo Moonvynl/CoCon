@@ -1,0 +1,28 @@
+{% extends 'cocon/home.html' %}
+
+{% block content %}
+{% load static %}
+
+{% load custom_tags %}
+<link rel="stylesheet" href="{% static '/css/chat.css' %}">
+
+{% block chat %}
+{% endblock %}
+
+{% include 'chat_system/chat_list.html' %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "{% url 'chat_system:chat_list' %}",
+        success: function(data) {
+            $("#users-menu").html(data);  
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching chat list:", status, error);
+        }
+    });
+});
+</script>
+{% endblock %}

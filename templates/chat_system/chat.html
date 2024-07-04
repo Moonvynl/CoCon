@@ -1,0 +1,25 @@
+{% extends 'chat_system/chat_base.html' %}
+
+{% block chat %}
+{% load static %}
+
+<div class="chat-container">
+    <div class="chat-header">
+        <img src="{{receiver.avatar.url}}" alt="Profile Picture">
+        <h2>{{receiver.username}}</h2>
+        <span>Status: Online</span>
+    </div>
+    <div class="chat-messages">
+        <div class="message">
+            <p><strong>You:</strong> Hello!</p>
+        </div>
+        <div class="message">
+            <p><strong>{{receiver.username}}:</strong> Hi there!</p>
+        </div>
+    </div>
+    <div class="chat-input">
+        <textarea placeholder="Type your message..."></textarea>
+        <button>Send</button>
+    </div>
+</div>
+{% endblock %}

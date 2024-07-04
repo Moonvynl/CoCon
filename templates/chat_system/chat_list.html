@@ -1,0 +1,10 @@
+{% load custom_tags %}
+
+<div class="users-menu" id="users-menu">
+    <h2>Повідомлення</h2>
+    <ul>
+        {% for chat in chats %}
+        {{chat|remove_request_user:request.user.id}}
+        {% endfor %}
+    </ul>
+</div>

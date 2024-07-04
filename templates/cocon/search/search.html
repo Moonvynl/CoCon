@@ -1,0 +1,28 @@
+{% extends 'cocon/home.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<link rel="stylesheet" href="{% static 'css/search_results.css' %}">
+<script src="https://unpkg.com/htmx.org@1.9.5"></script>
+<div class="container-search">
+    <h3>
+        <span class="htmx-indicator">
+        ...
+    </span>
+    </h3>
+    <form>
+        {% csrf_token %}
+        <input class="form-control search-input" type="search"
+                name="search" placeholder="Begin Typing To Search Users..."
+                hx-get="/search/results/"
+                hx-trigger="keyup changed, search"
+                hx-target="#search-results"
+                hx-indicator=".htmx-indicator">
+    </form>
+</div>
+    <div id="search-results" class="results">
+        {% include "cocon/search/search_results.html" %}
+    </div>
+
+{% endblock %}
