@@ -9,17 +9,38 @@
         <h2>{{receiver.username}}</h2>
         <span>Status: Online</span>
     </div>
-    <div class="chat-messages">
-        <div class="message">
-            <p><strong>You:</strong> Hello!</p>
-        </div>
-        <div class="message">
-            <p><strong>{{receiver.username}}:</strong> Hi there!</p>
-        </div>
+    <div class="chat-messages" id="chat-messages">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.sender == request.user %}
+                    <div class="message sent-by-user">
+                        <p><strong>You:</strong> {{message}}</p>
+                        <span class="timestamp">{{message.created_at}}</span>
+                    </div>
+                {% else %}
+                    <div class="message received">
+                        <p><strong>{{receiver.username}}:</strong> {{message}}</p>
+                        <span class="timestamp">{{message.created_at}}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h1 class="empty-sign">Тут поки пусто</h1>
+        {% endif %}
     </div>
+    <form action="{% url 'chat_system:send-message' chat.id%}" method="post" id="messageForm">
+    {% csrf_token %}
     <div class="chat-input">
-        <textarea placeholder="Type your message..."></textarea>
-        <button>Send</button>
+        <textarea placeholder="Type your message..." name="content" required></textarea>
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
     </div>
+    </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var chatMessages = document.getElementById('chat-messages');
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom on load
+    });
+</script>
 {% endblock %}

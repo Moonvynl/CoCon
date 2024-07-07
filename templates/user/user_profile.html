@@ -17,7 +17,7 @@
                 {% else %}
                 <div class="profile-actions">
                     <a class="follow-button">Підписатись</a>
-                    <a class="message-button" href="{% url 'chat_system:chat' user.id %}">Повідомлення</a>
+                    <a class="message-button" href="{% url 'chat_system:create-chat' user.id %}">Повідомлення</a>
                 </div>
                 {% endif %}
             </div>

@@ -3,8 +3,12 @@
 <div class="users-menu" id="users-menu">
     <h2>Повідомлення</h2>
     <ul>
-        {% for chat in chats %}
-        {{chat|remove_request_user:request.user.id}}
-        {% endfor %}
+        {% if chats %}
+            {% for chat in chats %}
+            {{chat|remove_request_user:request.user.id}}
+            {% endfor %}
+        {% else %}
+        <h1>Пусто</h1>
+        {% endif %}
     </ul>
 </div>
