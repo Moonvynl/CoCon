@@ -31,6 +31,11 @@
             <label for="bio">Біо</label>
             <textarea id="bio" name="bio">{{ form.bio.value|default:'' }}</textarea>
         </div>
+        <div class="form-group">
+            <label for="profile_is_private" >Приватний профіль</label>
+            <input type="checkbox" id="switch" class="custom-switch" name="profile_is_private" {% if form.profile_is_private.value %}checked{% endif %}>
+            <label for="switch" class="switch-label custom-switch-label"></label>
+        </div>
         <button type="submit" class="btn-update">Update Profile</button>
     </form>
 </div>

@@ -16,8 +16,9 @@ class RegisterForm(UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ["username", "avatar", "bio"]
+        fields = ["username", "avatar", "bio", "profile_is_private"]
         widgets = {
-            "avatar": forms.FileInput()
+            "avatar": forms.FileInput(),
+            "profile_is_private": forms.CheckboxInput()
         }
     

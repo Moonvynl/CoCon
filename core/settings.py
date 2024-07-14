@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google', 
     'chat_system',
+    'notification_system',
     ]
 
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',

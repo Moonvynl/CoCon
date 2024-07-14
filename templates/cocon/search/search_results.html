@@ -3,7 +3,7 @@
     <div class="user-card">
         <img class="user-card-avatar" src="{{user.avatar.url}}" alt="User Avatar">
         <div class="user-card-info">
-            <h3>{{user.username}}</h3>
+            <h3>{% if user.profile_is_private %}<i class="fa-solid fa-lock"></i> {% endif %}{{user.username}}</h3>
             <p>{{user.bio|truncatechars:70}}</p>
         </div>
     </div>

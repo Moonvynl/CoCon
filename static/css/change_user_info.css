@@ -93,3 +93,45 @@ input::file-selector-button:hover {
     
 }
 
+.custom-switch {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.custom-switch-label {
+    display: block;
+    width: 200px;
+    height: 50px;
+    background-color: #477a85;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 0 0 10px #477a8550;
+}
+
+.custom-switch-label::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background-color: #e8f5f7;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transition: 0.5s;
+}
+
+.custom-switch:checked + .custom-switch-label::after {
+    left: calc(100% - 15px);
+    transform: translateX(-100%);
+}
+
+.custom-switch:checked + .custom-switch-label {
+    background-color: #243d42;
+}
+
+.custom-switch-label:active::after {
+    width: 50px;
+}

@@ -23,32 +23,9 @@
     </div>
 </header>
 
-<div class="left-menu">
-    <nav class="menu">
-        <ul>
-            <li><a href="{% url 'cocon:home' %}"><i class="fa-solid fa-house"></i> Головна</a></li>
-            <li><a href="{% url 'cocon:search' %}"><i class="fa-solid fa-magnifying-glass"></i> Пошук</a></li>
-            <li><a href="#"><i class="fa-solid fa-mug-hot"></i> Цікаве</a></li>
-            <li><a href="{% url 'chat_system:chat' %}"><i class="fa-regular fa-comment"></i> Повідомлення</a></li>
-            <li><a href="#"><i class="fa-solid fa-inbox"></i> Сповіщення</a></li>
-            <li><a href="#" id="openPostCreate"><i class="fa-solid fa-plus"></i> Створити</a></li>
-            <li>
-                <a href="{% url 'user:profile' request.user.id%}">
-                    <img src="{{request.user.avatar.url}}" alt="" style="width: 30px; height: 30px; border-radius: 50%;">
-                    <span>Профіль</span>
-                </a>
-            </li>
-            <li style="margin-top: 270px;" onclick="dropdownMore()" class="dropbtn"><a href="#"><i class="fa-solid fa-bars"></i> Більше</a></li>
-        </ul>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#">Налаштування</a>
-            <form method="post" action="{% url 'user:logout' %}">
-                {% csrf_token %}
-                <button type="submit" class="logout-menu-btn">Вийти</button>
-            </form>
-        </div>
-    </nav>
-</div>
+{% block leftmenu %}
+{% include 'cocon/left_menu.html' %}
+{% endblock %}
 
 <!-- Content Section -->
 <div class="content">

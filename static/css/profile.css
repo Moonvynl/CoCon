@@ -36,7 +36,13 @@
     font-size: 28px;
 }
 
-.edit-profile-button, .message-button, .follow-button{
+.profile-actions{
+    display: inline-flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.edit-profile-button, .message-button, .follow-button, .unfollow-button{
     padding: 5px 10px;
     border: 1px solid #dbdbdb;
     background-color: #fff;
@@ -45,6 +51,16 @@
     font-size: 14px;
     color: black;
     text-decoration: inherit; 
+    margin-right: 10px;
+}
+
+.unfollow-button{
+    background-color: rgb(77, 77, 77);
+    color:white;
+}
+
+.unfollow-button:hover {
+    background-color: rgb(58, 58, 58);
 }
 
 .edit-profile-button:hover, .message-button:hover, .follow-button:hover{
@@ -100,3 +116,9 @@
     cursor: pointer;
 }
 
+.private-profile-sign {
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

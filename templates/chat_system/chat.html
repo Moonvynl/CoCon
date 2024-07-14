@@ -4,11 +4,13 @@
 {% load static %}
 
 <div class="chat-container">
+    <a href="{% url 'user:profile' receiver.id %}">
     <div class="chat-header">
         <img src="{{receiver.avatar.url}}" alt="Profile Picture">
         <h2>{{receiver.username}}</h2>
         <span>Status: Online</span>
     </div>
+    </a>
     <div class="chat-messages" id="chat-messages">
         {% if messages %}
             {% for message in messages %}

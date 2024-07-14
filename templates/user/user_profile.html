@@ -16,7 +16,22 @@
                 <a href="{% url 'user:update-user-info' request.user.id %}" class="edit-profile-button">Редагувати профіль</a>
                 {% else %}
                 <div class="profile-actions">
-                    <a class="follow-button">Підписатись</a>
+                    <form action="{% url 'user:follow' user.id%}" method="post">
+                    {% csrf_token %}
+                    {% if user_is_followed %}
+                        <button class="unfollow-button">Відписатись</button>
+                    {% else %}
+                        {% if user_profile_is_private %}
+                            {% if follow_request %}
+                                <button class="follow-button" disabled>Очікує підтвердження</button>
+                            {% else %}
+                                <button class="follow-button">Підписатись</button>
+                            {% endif %}
+                        {% else %}
+                            <button class="follow-button">Підписатись</button>
+                        {% endif %}
+                    {% endif %}
+                    </form>
                     <a class="message-button" href="{% url 'chat_system:create-chat' user.id %}">Повідомлення</a>
                 </div>
                 {% endif %}
@@ -32,10 +47,25 @@
         </div>
     </header>
     <section class="profile-gallery">
-        {% if user_posts %}
-            {% for post in user_posts %}
-            <div class="gallery-item"><img src="{{post.content.url}}" alt="Gallery Image 1"></div>
-            {% endfor %}
+        {% if user_profile_is_private %}
+            {% if user_is_followed %}
+                {% if user_posts %}
+                    {% for post in user_posts %}
+                    <div class="gallery-item"><img src="{{post.content.url}}" alt="Gallery Image 1"></div>
+                    {% endfor %}
+                {% endif %}
+            {% else %}
+                <div class="private-profile-sign">
+                    <img src="{% static '/img/lock.png' %}" alt="">
+                    <h1>Цей профіль приватний</h1>
+                </div>
+            {% endif %}
+        {% else %}
+            {% if user_posts %}
+                {% for post in user_posts %}
+                <div class="gallery-item"><img src="{{post.content.url}}" alt="Gallery Image 1"></div>
+                {% endfor %}
+            {% endif %}
         {% endif %}
     </section>
 </div>

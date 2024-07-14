@@ -1,0 +1,54 @@
+{% extends 'cocon/home.html' %}
+
+{% block content %}
+{% load static %}
+{% load custom_filters %}
+<link rel="stylesheet" href="{% static '/css/notifications.css' %}">
+
+<div class="notification-container">
+    <h1 id="messages-h1">Сповіщення</h1>
+    {% if page_obj %}
+        {% for item in page_obj %}
+            {% if item|is_instance:"FollowRequest" %}
+            <div class="notification{% if not.is_seen %}-unread{% endif %}">
+                <div class="notification-content">
+                    <form action="{% url 'notification_system:action-follow-request' item.id%}" method="post">
+                        {% csrf_token %}
+                        <img src="{{item.from_user.avatar.url}}" alt="Profile Picture" class="profile-picture">
+                        <div class="notification-message">
+                            <a href="{% url 'user:profile' item.from_user.id %}">{{item.from_user.username}}</a> хоче слідкувати за вами 👀
+                        </div>
+                        <div class="notification-time">
+                            <button type="submit" name="action" value="accept">Прийняти</button>
+                            <button type="submit" name="action" value="reject">Відхилити</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% elif item|is_instance:"Notification" %}
+            <div class="notification{% if item.is_seen == False %}-unread{% endif %}">
+                    <div class="notification-content">
+                        {{ item.html|safe }}
+                    </div>
+                    <div class="notification-time">{{ item.date|timesince }} тому</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <h1>У вас ще немає сповіщень</h1>
+    {% endif%}
+    <div>
+        <ul class="pagination-nav-notification">
+            {% for page_num in page_obj.paginator.page_range %}
+                {% if page_obj.number != page_num %}
+                    <li class="page-item active"><a class="page-link" href="?page={{page_num}}">{{ page_num }}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{page_num}}">{{ page_num }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}
