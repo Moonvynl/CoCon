@@ -51,7 +51,7 @@
             {% if user_is_followed %}
                 {% if user_posts %}
                     {% for post in user_posts %}
-                    <div class="gallery-item"><img src="{{post.content.url}}" alt="Gallery Image 1"></div>
+                    <div class="gallery-item" onclick="imgDetail('{{post.id}}')"><img src="{{post.content.url}}" alt="Gallery Image 1"></div>
                     {% endfor %}
                 {% endif %}
             {% else %}
@@ -63,10 +63,12 @@
         {% else %}
             {% if user_posts %}
                 {% for post in user_posts %}
-                <div class="gallery-item"><img src="{{post.content.url}}" alt="Gallery Image 1"></div>
+                <div class="gallery-item" onclick="imgDetail('{{post.id}}')"><img src="{{post.content.url}}" alt="Gallery Image 1"></div>
                 {% endfor %}
             {% endif %}
         {% endif %}
     </section>
 </div>
+
+<script src="{% static 'js/imgDetail.js' %}"></script>
 {% endblock %}

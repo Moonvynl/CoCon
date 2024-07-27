@@ -18,12 +18,13 @@ window.onclick = function(event) {
 /*****/
 
 // MODAL WINDOW
-var modal = document.getElementById("modal");
+var modal = document.getElementById("modalCreatePost");
 var btn = document.getElementById("openPostCreate");
 var span = document.getElementsByClassName("close-btn")[0];
 
 btn.onclick = function() {
     modal.style.display = "block";
+    console.log("clicked");
 }
 
 span.onclick = function() {
@@ -35,4 +36,5 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
 ///////////////////

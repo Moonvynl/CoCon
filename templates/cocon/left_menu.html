@@ -1,9 +1,11 @@
+{% load static %}
+
 <div class="left-menu" id="left-menu">
     <nav class="menu">
         <ul>
             <li><a href="{% url 'cocon:home' %}"><i class="fa-solid fa-house"></i> Головна</a></li>
             <li><a href="{% url 'cocon:search' %}"><i class="fa-solid fa-magnifying-glass"></i> Пошук</a></li>
-            <li><a href="#"><i class="fa-solid fa-mug-hot"></i> Цікаве</a></li>
+            <li><a href="{% url 'cocon:interestings' %}"><i class="fa-solid fa-mug-hot"></i> Цікаве</a></li>
             <li><a href="{% url 'chat_system:chat' %}"><i class="fa-regular fa-comment"></i> Повідомлення 
             </a></li>
             <li><a href="{% url 'notification_system:notifications' %}"><i class="fa-solid fa-inbox"></i> Сповіщення  
@@ -31,3 +33,5 @@
         </div>
     </nav>
 </div>
+
+<script src="{% static 'js/script.js' %}"></script>

@@ -1,4 +1,4 @@
-.modal {
+.modalCreatePost {
     display: none; /* Приховано за замовчуванням */
     position: fixed; /* Залишається на місці */
     z-index: 1; /* Ставиться поверх інших елементів */

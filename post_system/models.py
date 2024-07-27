@@ -38,5 +38,5 @@ class Comment(models.Model):
         verbose_name_plural = 'comments'
 
     def __str__(self):
-        return self.content
+        return self.user
 

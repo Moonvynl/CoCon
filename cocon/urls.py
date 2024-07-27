@@ -7,6 +7,7 @@ urlpatterns = [
     path('leftmenu/', LeftMenuView.as_view(), name='leftmenu'),
     path('search/', search_view, name='search'),
     path('search/results/', search_results, name='search_results'),
+    path('interestings/', InterestingsView.as_view(), name='interestings'),
     
 ]
 

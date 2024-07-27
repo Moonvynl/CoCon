@@ -1,0 +1,16 @@
+{% extends 'cocon/home.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/interestings.css' %}">
+
+<div class="interestings-container">
+    <div class="gallery">
+        {% for post in posts%}
+            <div class="gallery-item" onclick="imgDetail('{{post.id}}')"><img src="{{post.content.url}}" alt=""></div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{% static 'js/imgDetail.js' %}"></script>
+{% endblock %}

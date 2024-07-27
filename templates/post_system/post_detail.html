@@ -1,0 +1,40 @@
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/post_detail.css' %}">
+
+<div id="postModal" class="post-modal">
+    <div class="modal-post-content">
+        <span class="close">&times;</span>
+        <div class="modal-post-body">    
+            <div class="modal-img-post-div">
+                <img id="modalImage" src="" alt="Modal Image453">
+            </div>
+            <div class="post-info">
+                <div class="userbox">
+                    <img src="" alt="" id="modalUserAvatar">
+                    <p class="modalUsername"></p>
+                    <p class="post-timestamp" id="postCreatedAt"> </p>
+                </div>
+                <div class="comment-section">
+                    <div class="comment-list" id="comment-list">
+        
+                    </div>
+                </div>
+                <div class="post-controls">
+                    <form class="like-form" action="{% url 'post_system:like-post' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="postId" name="postId" value=""/>
+                        <input type="hidden" id="userId" name="userId" value=""/>
+                        <button class="like-button" id="likeButton"></button>
+                    </form>
+                    <form class="comment-form" action="{% url 'post_system:comment-post' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Add a comment..." name="com-content" class="comment-input">
+                        <input type="hidden" id="postIdCom" name="postIdCom" value=""/>
+                        <input type="hidden" id="userIdCom" name="userIdCom" value=""/>
+                        <button type="submit" class="submit-comment">Відправити</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

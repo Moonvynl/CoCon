@@ -7,6 +7,7 @@ from user.models import CustomUser
 from django.views.decorators.csrf import csrf_exempt
 from notification_system.models import Notification
 from user.models import FollowRequest
+from post_system.models import *
 
 
 class LeftMenuView(TemplateView):
@@ -50,3 +51,9 @@ def search_results(request):
     }
 
     return render(request, 'cocon/search/search_results.html', context)
+
+
+class InterestingsView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        posts = Post.objects.all().order_by('-created_at').order_by('-like')
+        return render(request, 'cocon/interestings.html', {'posts': posts}) 
