@@ -12,13 +12,27 @@ from django.core.serializers import serialize
 class CreatePostView(RedirectToPreviousMixin ,CreateView):
     def post(self, request, *args, **kwargs):
         form = PostCreateForm(data=request.POST, files=request.FILES)
+        hashtag_list = []
+        if request.POST.get('hashtags'):
+            for hashtag in request.POST.get('hashtags').split():
+                hashtagg = Hashtag.objects.get_or_create(title=hashtag)
+                hashtag_list.append(hashtagg[0])
+        else:
+            hashtag_list = None
+
         if form.is_valid():
-            Post.objects.create(
+            post = Post.objects.create(
                 user=request.user,
                 content=form.cleaned_data.get('content'),
-                description=form.cleaned_data.get('description')
-            ).save()
+                description=form.cleaned_data.get('description'),
+            )
+            post.save()
+            if hashtag_list:
+                for i in hashtag_list:
+                    post.hashtags.add(i)
             return redirect('user:profile', pk = request.user.id)
+        else:
+            return HttpResponse('Invalid form')
 
 
 class PostDetailView(DetailView):
@@ -39,6 +53,7 @@ def get_model_data(request, pk):
         instance = Post.objects.get(pk=pk)
         queryset = Comment.objects.filter(post=instance)
         comments = []
+        hashtags = []
         for comment in queryset:
             comments.append({
                 'id': comment.id,
@@ -48,6 +63,12 @@ def get_model_data(request, pk):
                 'content': comment.content,
                 'created_at': comment.created_at,
             })
+        if instance.hashtags.all():
+            for hashtag in instance.hashtags.all():
+                hashtags.append({
+                    'id': hashtag.id,
+                    'title': hashtag.title
+                })
         data = {
             'id': instance.id,
             'user': instance.user.username,
@@ -58,7 +79,9 @@ def get_model_data(request, pk):
             'created_at': instance.created_at,
             'likes_count': Like.objects.filter(post=instance).count(),
             'is_liked': Like.objects.filter(post=instance, user=request.user).exists(),
+
         }
+        data['hashtags'] = hashtags
         data['comments'] = comments
         return JsonResponse(data)
     except Post.DoesNotExist:
@@ -79,7 +102,8 @@ def like_post(request):
             'likes_count': Like.objects.filter(post=post).count(),
             'is_liked': Like.objects.filter(post=post, user=request.user).exists()
         }
-        return redirect('user:profile', pk = user_id)
+        referer = request.META.get('HTTP_REFERER', '/')
+        return redirect(referer)
     
     return JsonResponse({'error': 'Invalid request'}) 
 
@@ -92,3 +116,18 @@ def comment_post(request):
         post = Post.objects.get(id=post_id)
         Comment.objects.create(post=post, user=request_user, content=content)
         return redirect('user:profile', pk = user_id)
+
+
+class HashtagPosts(ListView):
+    model = Post
+    template_name = 'post_system/hashtag_posts.html'
+    context_object_name = 'posts'
+
+    def get(self, request, *args, **kwargs):
+        hashtag = Hashtag.objects.get(title=kwargs['pk'])
+        posts = Post.objects.filter(hashtags=hashtag)
+        context = {
+            'posts': posts,
+            'hashtag':hashtag,
+        }
+        return render(request, self.template_name, context)

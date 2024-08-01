@@ -8,5 +8,5 @@ class PostCreateForm(forms.ModelForm):
         fields = ['description', 'content']
         widgets = {
             "description": forms.TextInput(attrs={"class": "form-control"}),
-            "content": forms.FileInput(attrs={"class": "form-control"})
+            "content": forms.FileInput(attrs={"class": "form-control"}),
         }

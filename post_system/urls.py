@@ -8,6 +8,7 @@ urlpatterns = [
     path('get_model_data/<int:pk>/', get_model_data, name='post-data'),
     path('like-post/', like_post, name='like-post'),
     path('comment-post', comment_post, name='comment-post'),
+    path('hashtags-posts/<str:pk>/', HashtagPosts.as_view(), name='hashtag-posts'),
 
 ]
 

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var userIdCom = document.getElementById('userIdCom');
     var userAvatar = document.getElementById('modalUserAvatar');
     var postCreatedAt = document.getElementById('postCreatedAt');
+    var postHashtags = document.getElementById('postHashtags');
 
     window.imgDetail = function(postId) {
         fetch(`/get_model_data/${postId}/`)
@@ -48,6 +49,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else if (!data.comments) {
                     document.getElementById('comment-list').innerHTML = '';
                 }
+
+                if (data.hashtags) {
+                    postHashtags.innerHTML = '';
+                    data.hashtags.forEach(hashtag => {
+                        postHashtags.innerHTML = `<a class="hashtag" href="/hashtags-posts/${hashtag.title}/"><i class="fa-solid fa-hashtag"></i>${hashtag.title}</a>`;
+                        console.log(hashtag.title);
+                    });
+                } else {
+                    postHashtags.innerHTML = '';
+                }
+
 
                 if (data.comments) {
                     data.comments.forEach(comment => {

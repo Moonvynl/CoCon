@@ -4,6 +4,7 @@ from user.models import CustomUser
 
 class Post(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posts')
+    hashtags = models.ManyToManyField('Hashtag', blank=True)
 
     content = models.FileField(upload_to='posts/')
     description = models.TextField(max_length=2200, blank=True)
@@ -13,9 +14,6 @@ class Post(models.Model):
         ordering = ['-created_at']
         verbose_name = 'post'
         verbose_name_plural = 'posts'
-    
-    def __str__(self):
-        return self.content.url, self.user
 
 
 class Like(models.Model):
@@ -39,4 +37,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user
+
+
+class Hashtag(models.Model):
+    title = models.CharField(max_length=255, unique=True)
+    post_count = models.IntegerField(default=0)
+
+    def count_posts(self):
+        self.post_count = Post.objects.filter(content__icontains=self.title).count()
+        self.save()
+
+    def __str__(self):
+        return self.title
 

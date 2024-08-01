@@ -14,7 +14,6 @@
 .modal-post-body {
     background-color: var(--main-menu-color);
     height: 700px;
-    border-bottom: 1px solid grey;
     position: relative;
 }
 
@@ -90,6 +89,7 @@
     margin: 0 auto; 
     font-family: Arial, sans-serif;
     overflow: scroll;
+    overflow-x:hidden;
 }
 
 .comment-list {
@@ -135,12 +135,12 @@
     background-color: var(--main-bg-color);
     position: fixed;
     width: 645px; 
-    bottom: 155px; 
-    right: 285px; 
+    bottom: 150px; 
+    right: 276px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    height: 100px; 
+    height: 110px; 
     z-index: 1000; 
 }
 
@@ -210,4 +210,25 @@
 .post-timestamp {
     color: grey;
     font-size: x-small;
+}
+
+.hashtag-container {
+    margin-left: 10px;
+    display: block; 
+    margin-top: 10px; 
+    clear: both; 
+}
+
+.hashtag {
+    text-decoration: none;
+    background-color: #383838;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+    display: inline-block; 
+}
+
+.hashtag:hover {
+    background-color:rgb(70, 69, 69);
 }

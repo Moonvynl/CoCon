@@ -2,12 +2,13 @@ from typing import Any
 from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from user.models import CustomUser
 from django.views.decorators.csrf import csrf_exempt
 from notification_system.models import Notification
 from user.models import FollowRequest
 from post_system.models import *
+
 
 
 class LeftMenuView(TemplateView):
@@ -53,7 +54,12 @@ def search_results(request):
     return render(request, 'cocon/search/search_results.html', context)
 
 
-class InterestingsView(TemplateView):
-    def get(self, request, *args, **kwargs):
-        posts = Post.objects.all().order_by('-created_at').order_by('-like')
-        return render(request, 'cocon/interestings.html', {'posts': posts}) 
+class InterestingsView(ListView):
+    model = Post
+    template_name = 'cocon/interestings.html'
+    context_object_name = 'posts'
+    ordering = ['-created_at']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user__profile_is_private=False)
