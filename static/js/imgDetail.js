@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.hashtags) {
                     postHashtags.innerHTML = '';
                     data.hashtags.forEach(hashtag => {
-                        postHashtags.innerHTML = `<a class="hashtag" href="/hashtags-posts/${hashtag.title}/"><i class="fa-solid fa-hashtag"></i>${hashtag.title}</a>`;
+                        console.log(hashtag.title);
+                        postHashtags.innerHTML += `<a class="hashtag" href="/hashtags-posts/${hashtag.title}/"><i class="fa-solid fa-hashtag"></i>${hashtag.title}</a>`;
                         console.log(hashtag.title);
                     });
                 } else {
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modalPost.style.display = 'none';
     };
 
-    window.onclick = function(event) {
+    modalPost.onclick = function(event) {
         if (event.target == modalPost) {
             modalPost.style.display = 'none';
         }
