@@ -7,6 +7,7 @@ from .forms import PostCreateForm
 from .mixins import RedirectToPreviousMixin
 from django.http import JsonResponse
 from django.core.serializers import serialize
+from notification_system.models import Notification
 
 
 class CreatePostView(RedirectToPreviousMixin ,CreateView):
@@ -97,6 +98,16 @@ def like_post(request):
             Like.objects.filter(post=post, user=request.user).delete()
         else:
             Like.objects.create(post=post, user=request.user)
+            if request.user.id != post.user.id:
+                Notification.objects.create(user = CustomUser.objects.get(id = user_id),
+                                    message= f'{request.user.username} liked post {post.id}',
+                                    html = (
+                f'        <img src="{request.user.avatar.url}" alt="Profile Picture" class="profile-picture">'
+                f'        <div class="notification-message">'
+                f'            <a href="/profile/{request.user.id}/">{request.user.username}</a> вподобав ваш пост'
+                f'            <a><img class="post-action-img" src="{post.content.url}"></a>'
+                f'        </div>'
+                ))
         
         data = {
             'likes_count': Like.objects.filter(post=post).count(),
@@ -115,7 +126,18 @@ def comment_post(request):
         user_id = request.POST.get('userIdCom')
         post = Post.objects.get(id=post_id)
         Comment.objects.create(post=post, user=request_user, content=content)
-        return redirect('user:profile', pk = user_id)
+        if request_user.id != post.user.id:
+            Notification.objects.create(user = CustomUser.objects.get(id = user_id),
+                                                message= f'{request_user.username} commented post {post_id}',
+                                                html = (
+            f'        <img src="{request_user.avatar.url}" alt="Profile Picture" class="profile-picture">'
+            f'        <div class="notification-message">'
+            f'            <a href="/profile/{request_user.id}/">{request_user.username}</a> коментував ваш пост: {content}'
+            f'            <a><img class="post-action-img" src="{post.content.url}"></a>'
+            f'        </div>'
+            ))
+        referer = request.META.get('HTTP_REFERER', '/')
+        return redirect(referer)
 
 
 class HashtagPosts(ListView):

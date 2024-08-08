@@ -1,9 +1,8 @@
 {% load static %}
-
 <div class="left-menu" id="left-menu">
     <nav class="menu">
         <ul>
-            <li><a href="{% url 'cocon:home' %}"><i class="fa-solid fa-house"></i> Головна</a></li>
+            <li><a href="{% url 'cocon:newsfeed' %}"><i class="fa-solid fa-house"></i> Головна</a></li>
             <li><a href="{% url 'cocon:search' %}"><i class="fa-solid fa-magnifying-glass"></i> Пошук</a></li>
             <li><a href="{% url 'cocon:interestings' %}"><i class="fa-solid fa-mug-hot"></i> Цікаве</a></li>
             <li><a href="{% url 'chat_system:chat' %}"><i class="fa-regular fa-comment"></i> Повідомлення 
@@ -25,7 +24,7 @@
             <li style="margin-top: 270px;" onclick="dropdownMore()" class="dropbtn"><a href="#"><i class="fa-solid fa-bars"></i> Більше</a></li>
         </ul>
         <div id="myDropdown" class="dropdown-content">
-            <a href="#">Налаштування</a>
+            <a href="{% url 'user:update-user-info' request.user.id %}">Налаштування</a>
             <form method="post" action="{% url 'user:logout' %}">
                 {% csrf_token %}
                 <button type="submit" class="logout-menu-btn">Вийти</button>

@@ -4,10 +4,10 @@ from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from user.models import CustomUser
-from django.views.decorators.csrf import csrf_exempt
 from notification_system.models import Notification
 from user.models import FollowRequest
 from post_system.models import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -26,13 +26,6 @@ class LeftMenuView(TemplateView):
                 'unread_messages': unread_messages
             }
         return render(request, 'cocon/left_menu.html', context=context)
-
-class HomeView(TemplateView):
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return render(request, 'cocon/home.html')
-        else:
-            return render(request, 'user/login.html')
 
 
 def search_view(request):
@@ -57,9 +50,29 @@ def search_results(request):
 class InterestingsView(ListView):
     model = Post
     template_name = 'cocon/interestings.html'
-    context_object_name = 'posts'
+    
     ordering = ['-created_at']
 
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(user__profile_is_private=False)
+
+
+class NewsFeedView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'cocon/news_feed.html'
+    context_object_name = 'posts'
+    ordering = ['-created_at']
+    paginate_by = 3
+
+    def get(self, request, *args, **kwargs):
+        super().get(request)
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return render(request, 'cocon/post.html', context=self.get_context_data())
+        
+        return render(request, self.template_name, self.get_context_data())
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user__in=self.request.user.following.all())

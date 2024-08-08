@@ -1,0 +1,31 @@
+{% load static %}
+{% load cocon_custom_tags %}
+{% for post in page_obj %}
+        <div class="post-card">
+            <div class="post-header">
+                <img class="profile-img" src="{{post.user.avatar.url}}" alt="Profile Image">
+                <div class="user-info">
+                    <a href="{% url 'user:profile' post.user.id %}"><p class="username">{{post.user.username}}</p></a>
+                    <p class="timestamp">{{post.created_at|date:"F j, Y, g:i a"}}</p>
+                </div>
+            </div>
+            <div class="post-content">
+                <p>{{post.description}}</p>
+                <img src="{{post.content.url}}" alt="Post Image">
+                {%for hashtag in post.hashtags.all%}<a href="{% url 'post_system:hashtag-posts' hashtag.title%}">#{{hashtag}} </a>{%endfor%}
+            </div>
+            <div class="post-footer">
+                <div class="footer-icon">
+                    <form action="{% url 'post_system:like-post' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="postId" name="postId" value="{{post.id}}"/>
+                        <input type="hidden" id="userId" name="userId" value="{{post.user.id}}"/>
+                        <button class="likeBut" id="likeButton">{% if post|is_liked:request.user %}<i class="fa-solid fa-heart"></i>{%else%}<i class="far fa-heart">{%endif%}</i>{{post|likes_count}}</button>
+                    </form>
+                </div>
+                <div class="footer-icon">
+                    <p onclick="imgDetail('{{post.id}}')"><i class="far fa-comment"></i> Comment</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}

@@ -3,12 +3,11 @@ from django.urls import reverse_lazy
 from .views import *
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('', NewsFeedView.as_view(), name='newsfeed'),
     path('leftmenu/', LeftMenuView.as_view(), name='leftmenu'),
     path('search/', search_view, name='search'),
     path('search/results/', search_results, name='search_results'),
     path('interestings/', InterestingsView.as_view(), name='interestings'),
-    
 ]
 
 app_name = 'cocon'

@@ -9,6 +9,7 @@ class Post(models.Model):
     content = models.FileField(upload_to='posts/')
     description = models.TextField(max_length=2200, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_seen = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']

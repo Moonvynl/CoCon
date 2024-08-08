@@ -41,6 +41,7 @@
 
 .notification-message {
     font-size: 14px;
+    margin-bottom: 10px; 
 }
 
 .notification-message a {
@@ -62,7 +63,7 @@
 
 .pagination-nav-notification {
     display: flex;
-    justify-content: center; /* Center the pagination */
+    justify-content: center;
     list-style: none;
     padding: 0;
     margin: 20px 0;
@@ -88,4 +89,13 @@
 .pagination-nav-notification .page-item.active a {
     color: white;
     border: none;
+}
+
+.post-action-img {
+    display: block;
+    margin-top: 10px; 
+    width: 100px;
+    height: 100px;  
+    object-fit: cover;
+    border: white solid 1px;
 }

@@ -20,17 +20,8 @@ class NotificationList(ListView):
         paginator = Paginator(combined_list, 5)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
+
         
-        prev_page_number = request.session.get('prev_page_number')
-
-        if prev_page_number:
-            prev_page_obj = paginator.get_page(prev_page_number)
-            for obj in prev_page_obj:
-                obj.is_seen = True
-                obj.save()
-
-        request.session['prev_page_number'] = page_number
-    
         context = {
             'page_obj':page_obj,
         }

@@ -11,6 +11,7 @@
         {% for item in page_obj %}
             {% if item|is_instance:"FollowRequest" %}
             <div class="notification{% if not.is_seen %}-unread{% endif %}">
+                {% make_item_seen item %}
                 <div class="notification-content">
                     <form action="{% url 'notification_system:action-follow-request' item.id%}" method="post">
                         {% csrf_token %}
@@ -27,6 +28,7 @@
             </div>
             {% elif item|is_instance:"Notification" %}
             <div class="notification{% if item.is_seen == False %}-unread{% endif %}">
+                    {% make_item_seen item %}
                     <div class="notification-content">
                         {{ item.html|safe }}
                     </div>
