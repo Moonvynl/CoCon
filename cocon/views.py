@@ -50,7 +50,7 @@ def search_results(request):
 class InterestingsView(ListView):
     model = Post
     template_name = 'cocon/interestings.html'
-    
+    context_object_name = 'posts'
     ordering = ['-created_at']
 
     def get_queryset(self):

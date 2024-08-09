@@ -3,6 +3,8 @@
 }
 
 .container-search {
+    /* position: relative;
+    top: 50px; */
     width: 80%;
     max-width: 700px;
     background-color: inherit;
@@ -48,4 +50,9 @@ main {
     min-height: 10px;
     text-decoration: none;
     all: unset;
+}
+
+#search {
+    position: relative;
+    top: 100px;
 }

@@ -1,3 +1,9 @@
+.feed-container {
+    position: relative;
+    top: 60px;
+    z-index: -1;
+}
+
 .post-card {
     width: 700px;
     background-color: #fff;
@@ -109,4 +115,26 @@
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+.morediv {
+    top: 60px;
+    align-items: center;
+    margin: auto;
+    position: relative;
+    margin-left: 200px;
+}
+
+.show-more-posts {
+    width: 60%;
+    background-color: black;
+    border: solid 1px white;
+    color: white;
+    height: 35px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.show-more-posts:hover {
+    background-color: #272727;
 }

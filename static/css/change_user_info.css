@@ -90,7 +90,8 @@ input::file-selector-button:hover {
 
 .back-btn {
     transform: translateY(-40px) translateX(30px);
-    
+    position: relative;
+    top: 70px;
 }
 
 .custom-switch {

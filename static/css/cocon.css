@@ -43,6 +43,8 @@ body {
     height: 32px;
     border-bottom: solid rgb(155, 152, 152) 0.1px;
     border-width: thin;
+    width: 100%;
+    position: fixed;
 }
 
 .container {
@@ -157,6 +159,7 @@ body {
     width: 300px;
     background-color: rgba(13, 17, 23, 1);
     color: #fff;
+    top: 67px;
     height: 100%;
     position: fixed;
     overflow: auto;

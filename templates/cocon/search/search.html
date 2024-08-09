@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/search.css' %}">
 <link rel="stylesheet" href="{% static 'css/search_results.css' %}">
 <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+<div id="search">
 <div class="container-search">
     <h3>
         <span class="htmx-indicator">
@@ -24,5 +25,5 @@
     <div id="search-results" class="results">
         {% include "cocon/search/search_results.html" %}
     </div>
-
+</div>
 {% endblock %}
