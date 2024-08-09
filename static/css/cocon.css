@@ -45,6 +45,7 @@ body {
     border-width: thin;
     width: 100%;
     position: fixed;
+    z-index: 10000;
 }
 
 .container {

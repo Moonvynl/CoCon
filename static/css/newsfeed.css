@@ -1,7 +1,6 @@
 .feed-container {
     position: relative;
     top: 60px;
-    z-index: -1;
 }
 
 .post-card {
