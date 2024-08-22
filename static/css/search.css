@@ -56,3 +56,12 @@ main {
     position: relative;
     top: 100px;
 }
+
+.choose-output {
+    color: white;
+}
+
+.fa-hashtag{
+    font-size: 50px;
+    color: gray;
+}

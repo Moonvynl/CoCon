@@ -20,6 +20,10 @@ def chat_detail(request, pk):
     chat = get_object_or_404(Chat, pk=pk)
     receiver = chat.members.all().exclude(id=request.user.id)[0]
     messages = chat.messages.all()
+    for message in messages:
+        if message.sender != request.user:
+            message.is_seen = True
+            message.save()
     return render(request, 'chat_system/chat.html', {'chat': chat, 'messages': messages, 'receiver':receiver})
 
 def chat_list(request):

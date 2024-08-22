@@ -6,6 +6,11 @@
             <li><a href="{% url 'cocon:search' %}"><i class="fa-solid fa-magnifying-glass"></i> Пошук</a></li>
             <li><a href="{% url 'cocon:interestings' %}"><i class="fa-solid fa-mug-hot"></i> Цікаве</a></li>
             <li><a href="{% url 'chat_system:chat' %}"><i class="fa-regular fa-comment"></i> Повідомлення 
+                {% if unread_chat %}
+                <div class="unread-circle">
+                    <span class="unread-number">{{unread_chat}}</span>
+                </div>
+                {% endif %}
             </a></li>
             <li><a href="{% url 'notification_system:notifications' %}"><i class="fa-solid fa-inbox"></i> Сповіщення  
                 {% if unread_messages %}

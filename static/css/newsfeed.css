@@ -137,3 +137,8 @@
 .show-more-posts:hover {
     background-color: #272727;
 }
+
+.empty-text {
+    color:white;
+    margin: auto;
+}

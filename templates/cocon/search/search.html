@@ -15,15 +15,38 @@
     <form>
         {% csrf_token %}
         <input class="form-control search-input" type="search"
-                name="search" placeholder="Begin Typing To Search Users..."
-                hx-get="/search/results/"
+                name="search" placeholder="Begin Typing To Search..."
+                hx-get="/search/results/users/"
                 hx-trigger="keyup changed, search"
                 hx-target="#search-results"
                 hx-indicator=".htmx-indicator">
     </form>
+    <div id="search-categories">
+        <button id="search-users">Users</button>
+        <button id="search-hashtags">Hashtags</button>
+    </div>
 </div>
+
     <div id="search-results" class="results">
         {% include "cocon/search/search_results.html" %}
     </div>
 </div>
+
+<script>
+    document.getElementById('search-hashtags').addEventListener('click', function() {
+        const searchInput = document.querySelector('.search-input');
+        console.log(searchInput)
+        
+        searchInput.setAttribute('hx-get', '/search/results/hashtags/');
+        console.log(searchInput)
+    });
+
+    document.getElementById('search-users').addEventListener('click', function() {
+        const searchInput = document.querySelector('.search-input');
+        console.log(searchInput)
+        
+        searchInput.setAttribute('hx-get', '/search/results/users/');
+        console.log(searchInput)
+    });
+</script>
 {% endblock %}

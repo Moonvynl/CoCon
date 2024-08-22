@@ -7,9 +7,13 @@
 <div class="feed-container">
     {% include 'cocon/post.html' %}
 </div>
+{% if not following %}
+    <h1 class="empty-text">Тут поки пусто. Підпишіться на когось щоб бачити нові пости</h1>
+{% else %}
 <div class="morediv">
     <button class="show-more-posts" id="show-more-posts" onclick="showMorePosts()">Показати ще</button>
 </div>
+{% endif %}
 <input type="hidden" id="page-cur" value="{{page_obj.number}}">
 <input type="hidden" id="page-num" value="{{page_obj.paginator.num_pages}}">
 

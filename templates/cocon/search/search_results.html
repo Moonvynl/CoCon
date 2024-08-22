@@ -1,11 +1,24 @@
-{% for user in users %}
-<a href="{% url 'user:profile' user.id %}" style="color: inherit;">
-    <div class="user-card">
-        <img class="user-card-avatar" src="{{user.avatar.url}}" alt="User Avatar">
-        <div class="user-card-info">
-            <h3>{% if user.profile_is_private %}<i class="fa-solid fa-lock"></i> {% endif %}{{user.username}}</h3>
-            <p>{{user.bio|truncatechars:70}}</p>
+{% if users %}
+    {% for user in users %}
+    <a href="{% url 'user:profile' user.id %}" style="color: inherit;">
+        <div class="user-card">
+            <img class="user-card-avatar" src="{{user.avatar.url}}" alt="User Avatar">
+            <div class="user-card-info">
+                <h3>{% if user.profile_is_private %}<i class="fa-solid fa-lock"></i> {% endif %}{{user.username}}</h3>
+                <p>{{user.bio|truncatechars:70}}</p>
+            </div>
         </div>
-    </div>
-</a>
-{% endfor %}
+    </a>
+    {% endfor %}
+{% else %}
+    {% for hashtag in hashtags %}
+        <a href="{% url 'post_system:hashtag-posts' hashtag.title%}" style="color: inherit;">
+            <div class="user-card">
+                <p class="user-card-avatar"><i class="fa-solid fa-hashtag"></i></p>
+                <div class="user-card-info">
+                    <h3>{{hashtag.title}}</h3>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+{% endif %}
