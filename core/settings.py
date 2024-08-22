@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-91-ejse89x0iv))40z6*a47*-vkyz@@o)#ul6%#e0!u33($$5a'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
 
 # Application definition
@@ -90,6 +90,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
@@ -107,7 +108,8 @@ DATABASES = {
     }
 }
 
-# DATABASES['default'] = dj_database_url.parse("postgresql://cocon_db_user:Xz5HrNF94264rxdzTskWDGKS2AF1vrRK@dpg-cqr35lggph6c738h79f0-a.frankfurt-postgres.render.com/cocon_db")
+database_url = os.environ.get('DATABASE_URL')
+DATABASES['default'] = dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
