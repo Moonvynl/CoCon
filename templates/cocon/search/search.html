@@ -12,11 +12,20 @@
         ...
     </span>
     </h3>
-    <form>
+    <form id="search-users-form">
         {% csrf_token %}
         <input class="form-control search-input" type="search"
                 name="search" placeholder="Begin Typing To Search..."
                 hx-get="/search/results/users/"
+                hx-trigger="keyup changed, search"
+                hx-target="#search-results"
+                hx-indicator=".htmx-indicator">
+    </form>
+    <form id="search-hashtags-form" style="display: none;">
+        {% csrf_token %}
+        <input class="form-control search-input" type="search"
+                name="search" placeholder="Begin Typing To Search..."
+                hx-get="/search/results/hashtags/"
                 hx-trigger="keyup changed, search"
                 hx-target="#search-results"
                 hx-indicator=".htmx-indicator">
@@ -34,19 +43,20 @@
 
 <script>
     document.getElementById('search-hashtags').addEventListener('click', function() {
-        const searchInput = document.querySelector('.search-input');
-        console.log(searchInput)
-        
-        searchInput.setAttribute('hx-get', '/search/results/hashtags/');
-        console.log(searchInput)
+        const usersForm = document.getElementById('search-users-form');
+        const hashtagForm = document.getElementById('search-hashtags-form');
+
+        usersForm.style.display = 'none'; 
+        hashtagForm.style.display = 'block';
     });
 
+
     document.getElementById('search-users').addEventListener('click', function() {
-        const searchInput = document.querySelector('.search-input');
-        console.log(searchInput)
+        const usersForm = document.getElementById('search-users-form');
+        const hashtagForm = document.getElementById('search-hashtags-form');
         
-        searchInput.setAttribute('hx-get', '/search/results/users/');
-        console.log(searchInput)
+        usersForm.style.display = 'block'; 
+        hashtagForm.style.display = 'none';
     });
 </script>
 {% endblock %}
