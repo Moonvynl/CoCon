@@ -1,5 +1,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+<script  src = "https://code.jquery.com/jquery -3.6.4.min.js" > </script> 
 
 <div id="postModal" class="post-modal">
     <div class="modal-post-content">
@@ -29,7 +30,7 @@
                             <i class="like-icon"></i> Like
                         </button>
                     </form>
-                    <form class="comment-form" action="{% url 'post_system:comment-post' %}" method="post">
+                    <form class="comment-form" action="{% url 'post_system:comment-post' %}" method="post" id="comment-form">
                         {% csrf_token %}
                         <input type="text" placeholder="Add a comment..." name="com-content" class="comment-input">
                         <input type="hidden" id="postIdCom" name="postIdCom" value=""/>
@@ -41,3 +42,4 @@
         </div>
     </div>
 </div>
+

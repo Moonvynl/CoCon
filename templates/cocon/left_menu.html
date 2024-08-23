@@ -14,7 +14,7 @@
             </a></li>
             <li><a href="{% url 'notification_system:notifications' %}"><i class="fa-solid fa-inbox"></i> Сповіщення  
                 {% if unread_messages %}
-                <div class="unread-circle">
+                <div class="unread-circle notif-circle">
                     <span class="unread-number">{{unread_messages}}</span>
                 </div>
                 {% endif %}

@@ -45,8 +45,13 @@
     document.getElementById('search-hashtags').addEventListener('click', function() {
         const usersForm = document.getElementById('search-users-form');
         const hashtagForm = document.getElementById('search-hashtags-form');
+        const hashtagBut = document.getElementById('search-hashtags');
+        const usersBut = document.getElementById('search-users');
 
         usersForm.style.display = 'none'; 
+        usersBut.style.border = 'none'
+
+        hashtagBut.style.border = '2px solid white'
         hashtagForm.style.display = 'block';
     });
 
@@ -54,8 +59,14 @@
     document.getElementById('search-users').addEventListener('click', function() {
         const usersForm = document.getElementById('search-users-form');
         const hashtagForm = document.getElementById('search-hashtags-form');
-        
+        const hashtagBut = document.getElementById('search-hashtags');
+        const usersBut = document.getElementById('search-users');
+
+
         usersForm.style.display = 'block'; 
+        usersBut.style.border = '2px solid white'
+
+        hashtagBut.style.border = 'none';
         hashtagForm.style.display = 'none';
     });
 </script>

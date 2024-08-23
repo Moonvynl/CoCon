@@ -107,6 +107,10 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    "default": dj_database_url.parse("postgresql://cogito_connect_db_user:aDXB4asKmf8MImJnERaXEXdWeXrtRMGu@dpg-cr492vt6l47c73bd3ndg-a.oregon-postgres.render.com/cogito_connect_db")
+}
+
 # DATABASES['default'] = dj_database_url.parse("postgresql://cocon_db_user:Xz5HrNF94264rxdzTskWDGKS2AF1vrRK@dpg-cqr35lggph6c738h79f0-a.frankfurt-postgres.render.com/cocon_db")
 
 # Password validation
