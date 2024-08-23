@@ -111,7 +111,7 @@ DATABASES = {
     "default": dj_database_url.parse(database_url)
 }
 
-# DATABASES['default'] = dj_database_url.parse("postgresql://cocon_db_user:Xz5HrNF94264rxdzTskWDGKS2AF1vrRK@dpg-cqr35lggph6c738h79f0-a.frankfurt-postgres.render.com/cocon_db")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
