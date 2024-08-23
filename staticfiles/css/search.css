@@ -1,0 +1,109 @@
+.content {
+    padding-top: 0px;
+}
+
+.container-search {
+    /* position: relative;
+    top: 50px; */
+    width: 80%;
+    max-width: 700px;
+    background-color: inherit;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+    margin-left: 400px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    color: #ffffff;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #bbbbbb;
+}
+
+.results {
+    width: 1500px;
+    color: white;
+    width: 100%;
+    background-color: inherit;
+    padding: 10px;
+    min-height: 10px;
+    text-decoration: none;
+    all: unset;
+}
+
+#search {
+    position: relative;
+    top: 100px;
+}
+
+.choose-output {
+    color: white;
+}
+
+.fa-hashtag{
+    font-size: 50px;
+    color: gray;
+}
+
+#search-categories {
+    margin-top: 10px;
+    margin-left: 45px;
+}
+
+#search-hashtags, #search-users {
+    background-color: #111827;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1rem;
+    padding: .75rem 1.2rem;
+    text-align: center;
+    text-decoration: none #6B7280 solid;
+    text-decoration-thickness: auto;
+    transition-duration: .2s;
+    transition-property: background-color,border-color,color,fill,stroke;
+    transition-timing-function: cubic-bezier(.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 300px;
+
+}
+
+
+#search-hashtags:hover, #search-users:hover {
+    background-color: #374151;
+}
+
+#search-hashtags, #search-users:focus {
+    box-shadow: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}

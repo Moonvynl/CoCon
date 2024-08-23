@@ -1,0 +1,124 @@
+.profile-container {
+    max-width: 935px;
+    margin: 20px auto;
+    background-color: rgba(13, 17, 23, 1);
+    padding: 20px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    color:#dbdbdb;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.profile-details {
+    flex-grow: 1;
+}
+
+.profile-username {
+    display: flex;
+    align-items: center;
+}
+
+.profile-username h1 {
+    margin: 0;
+    margin-right: 20px;
+    font-size: 28px;
+}
+
+.profile-actions{
+    display: inline-flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.edit-profile-button, .message-button, .follow-button, .unfollow-button{
+    padding: 5px 10px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    color: black;
+    text-decoration: inherit; 
+    margin-right: 10px;
+}
+
+.unfollow-button{
+    background-color: rgb(77, 77, 77);
+    color:white;
+}
+
+.unfollow-button:hover {
+    background-color: rgb(58, 58, 58);
+}
+
+.edit-profile-button:hover, .message-button:hover, .follow-button:hover{
+    background-color: #d8d8d8;
+    border: rgb(0, 0, 0) 1px solid;
+}
+
+.profile-stats {
+    display: flex;
+    margin: 20px 0;
+    list-style: none;
+    padding: 0;
+}
+
+.profile-stats li {
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+.stat-number {
+    font-weight: bold;
+}
+
+.profile-bio {
+    font-size: 14px;
+}
+
+.profile-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery-item {
+    border: 1px white inset;
+    width: calc(33.333% - 10px);
+    padding-top: calc(33.333% - 10px);
+    position: relative;
+    background-color: inherit;
+}
+
+.gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.private-profile-sign {
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

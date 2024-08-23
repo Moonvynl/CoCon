@@ -1,0 +1,138 @@
+.change-container {
+    font-family: "Space Mono", monospace;
+    background-color: inherit;
+    border: 1px solid #dbdbdb;
+    padding: 20px;
+    width: 900px;
+    color: white;
+    margin-left: 350px;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.username {
+    font-size: 18px;
+}
+
+.update-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    background-color: inherit;
+}
+
+.form-group input, .form-group textarea, .form-group select:focus {
+    color: white;
+    ::placeholder{
+        color: white;
+    }
+}
+
+input::file-selector-button {
+    border-radius: 0px;
+    border: 1px white solid;
+    background-color: black;
+    color: white;
+    font-family: "Space Mono", monospace;
+    transition: 1s, width 1s;
+
+}
+
+input::file-selector-button:hover {
+    background-color: rgb(36, 36, 36);
+    width: 170px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 60px;
+}
+
+.btn-update {
+    background-color: rgb(19, 72, 151);
+    color: #fff;
+    border: 1px white solid;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-update:hover {
+    background-color: rgb(17, 61, 128);
+}
+
+.back-btn {
+    transform: translateY(-40px) translateX(30px);
+    position: relative;
+    top: 70px;
+}
+
+.custom-switch {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.custom-switch-label {
+    display: block;
+    width: 200px;
+    height: 50px;
+    background-color: #477a85;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 0 0 10px #477a8550;
+}
+
+.custom-switch-label::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background-color: #e8f5f7;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transition: 0.5s;
+}
+
+.custom-switch:checked + .custom-switch-label::after {
+    left: calc(100% - 15px);
+    transform: translateX(-100%);
+}
+
+.custom-switch:checked + .custom-switch-label {
+    background-color: #243d42;
+}
+
+.custom-switch-label:active::after {
+    width: 50px;
+}
