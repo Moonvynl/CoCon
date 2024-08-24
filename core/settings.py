@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-91-ejse89x0iv))40z6*a47*-vkyz@@o)#ul6%#e0!u33($$5a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -108,7 +108,7 @@ DATABASES = {
 }
 database_url = os.environ.get('DATABASE_URL')
 DATABASES = {
-    "default": dj_database_url.parse(database_url)
+    "default": dj_database_url.parse('postgresql://cogito_connect_db_user:aDXB4asKmf8MImJnERaXEXdWeXrtRMGu@dpg-cr492vt6l47c73bd3ndg-a.oregon-postgres.render.com/cogito_connect_db')
 }
 
 
